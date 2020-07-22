@@ -4,6 +4,7 @@ const span = document.querySelectorAll('span');
 const user = document.querySelector("#user");
 const computer = document.querySelector("#computer");
 const result = document.querySelector("#result");
+const restart = document.querySelector("#restart ");
 
 let score = {
     player: 0,
@@ -15,7 +16,9 @@ span[1].innerText = score.compuer;
 
 // add action listener 
 imgs.forEach((img) => img.addEventListener('click', myfun));
-
+restart.addEventListener('click', () => {
+    location.reload();
+});
 
 function myfun(e) {
 
@@ -97,6 +100,10 @@ function addScore(whowhins) {
 
     span[0].innerText = score.player;
     span[1].innerText = score.compuer;
+
+    if (score.compuer > 0 || score.player > 0) {
+        restart.classList.remove('d-none');
+    }
 
 }
 
