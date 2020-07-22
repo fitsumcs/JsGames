@@ -18,12 +18,10 @@ function myfun(e) {
 
     const userchoice = e.target.id;
     const compuerchoice = randomechoice();
+    console.log("Your Choice : " + e.target.id);
+    console.log("Computer Choice : " + compuerchoice);
     const whowhins = winner(userchoice, compuerchoice);
-    console.log(e.target.id);
-    score.player++;
-    score.compuer++;
-    span[0].innerText = score.player;
-    span[1].innerText = score.compuer;
+
     // loadModal();
 }
 
@@ -45,7 +43,7 @@ function randomechoice() {
 
     }
 
-    console.log(choice);
+    return choice;
 
 
 
@@ -53,6 +51,37 @@ function randomechoice() {
 
 // who wins 
 function winner(userchoice, compuerchoice) {
+    let winner = '';
+    if (userchoice === compuerchoice) {
+        winner = "It is a Draw";
+    } else if (userchoice === 'rock') {
+        if (compuerchoice === 'scissors') {
+            winner = "You Won !!!";
+        } else {
+            winner = "Computer Won!!";
+        }
+    } else if (userchoice === 'paper') {
+        if (compuerchoice === 'rock') {
+            winner = "You Won !!!";
+        } else {
+            winner = "Computer Won!!";
+        }
+
+    } else if (userchoice === 'scissors') {
+        if (compuerchoice === 'paper') {
+            winner = "You Won !!!";
+        } else {
+            winner = "Computer Won!!";
+        }
+
+    }
+
+
+
+
+
+
+    return winner;
 
 }
 
