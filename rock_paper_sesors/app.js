@@ -1,6 +1,9 @@
 // selecet images
 const imgs = document.querySelectorAll('img');
 const span = document.querySelectorAll('span');
+const user = document.querySelector("#user");
+const computer = document.querySelector("#computer");
+const result = document.querySelector("#result");
 
 let score = {
     player: 0,
@@ -18,10 +21,11 @@ function myfun(e) {
 
     const userchoice = e.target.id;
     const compuerchoice = randomechoice();
-    console.log("Your Choice : " + e.target.id);
-    console.log("Computer Choice : " + compuerchoice);
     const whowhins = winner(userchoice, compuerchoice);
     addScore(whowhins);
+    user.innerText = userchoice;
+    computer.innerText = compuerchoice;
+    result.innerText = whowhins;
 
 
     // loadModal();
