@@ -21,6 +21,8 @@ function myfun(e) {
     console.log("Your Choice : " + e.target.id);
     console.log("Computer Choice : " + compuerchoice);
     const whowhins = winner(userchoice, compuerchoice);
+    addScore(whowhins);
+
 
     // loadModal();
 }
@@ -77,15 +79,22 @@ function winner(userchoice, compuerchoice) {
     }
 
 
-
-
-
-
     return winner;
 
 }
 
+function addScore(whowhins) {
+    if (whowhins === 'You Won !!!') {
+        score.player++;
+    } else if (whowhins === 'Computer Won!!') {
+        score.compuer++;
+    }
 
+
+    span[0].innerText = score.player;
+    span[1].innerText = score.compuer;
+
+}
 
 
 
