@@ -32,6 +32,13 @@ function paint() {
 
     // draw the ball
     drawtheBall();
+    // collision detection 
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if (y + dy < ballRadius) {
+        dy = -dy;
+    }
     //    add 2 px 
     x += dx;
     y += dy;
