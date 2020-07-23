@@ -3,14 +3,14 @@ const canvas = document.querySelector("#canv");
 const context = canvas.getContext("2d");
 
 // variables 
-// Realted to ball 
+// ball Realted to ball 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let ballRadius = 10;
+let ballRadius = 15;
 
 
 // draw the ball 
-function drawBall() {
+function drawtheBall() {
     context.beginPath();
     context.arc(x, y, ballRadius, 0, Math.PI * 2);
     context.fillStyle = 'red';
@@ -26,7 +26,7 @@ function paint() {
 
 
     // draw the ball
-    drawBall();
+    drawtheBall();
 
 
     // make a call multiple times 
