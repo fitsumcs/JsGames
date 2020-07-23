@@ -85,10 +85,10 @@ function paint() {
         dy = -dy;
     }
     // paddle
-    if (rightKeyPressed) {
+    if (rightKeyPressed && (paddleX + paddleWidth) < canvas.width) {
         paddleX += paddleDx;
     }
-    if (leftKeyPressed) {
+    if (leftKeyPressed && paddleX > 0) {
         paddleX -= paddleDx;
     }
     //    add 2 px 
