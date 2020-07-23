@@ -2,6 +2,11 @@
 const canvas = document.querySelector("#canv");
 const context = canvas.getContext("2d");
 
+// Events 
+document.addEventListener('keydown', keyDownHandler);
+document.addEventListener('keyup', keyUpHandler);
+
+
 // variables 
 // ball Realted to ball 
 let x = canvas.width / 2;
@@ -11,8 +16,28 @@ let ballRadius = 15;
 let dx = 2;
 let dy = -2;
 
+// Related to paddle 
+let paddleHeight = 10;
+let paddleWidth = 75;
+let paddleX = (canvas.width - paddleWidth) / 2;
+let paddleY = canvas.height - paddleHeight;
+
+let paddleDx = 7;
+
+// Key Press 
+let rightKeyPressed;
+let leftKeyPressed;
 
 
+function drawthePaddle() {
+    context.beginPath();
+    context.rect(paddleX, paddleY, paddleWidth, paddleHeight);
+    context.fillStyle = 'blue';
+    context.fill();
+    context.closePath();
+
+
+}
 // draw the ball 
 function drawtheBall() {
     context.beginPath();
@@ -21,7 +46,24 @@ function drawtheBall() {
     context.fill();
     context.closePath();
 }
+// Event Handlers 
+function keyDownHandler(e) {
+    if (e.keyCode == 39) {
+        rightKeyPressed = true;
+    } else if (e.keyCode == 37) {
+        leftKeyPressed = true;
+    }
 
+}
+
+function keyUpHandler(e) {
+    if (e.keyCode == 39) {
+        rightKeyPressed = false;
+    } else if (e.keyCode == 37) {
+        leftKeyPressed = false;
+    }
+
+}
 
 
 // Game Loop 
@@ -29,6 +71,9 @@ function paint() {
 
     // clear canves on each paint 
     context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // draw paddle
+    drawthePaddle();
 
     // draw the ball
     drawtheBall();
@@ -38,6 +83,13 @@ function paint() {
     }
     if (y + dy < ballRadius) {
         dy = -dy;
+    }
+    // paddle
+    if (rightKeyPressed) {
+        paddleX += paddleDx;
+    }
+    if (leftKeyPressed) {
+        paddleX -= paddleDx;
     }
     //    add 2 px 
     x += dx;
