@@ -8,6 +8,10 @@ let x = canvas.width / 2;
 let y = canvas.height - 30;
 let ballRadius = 15;
 
+let dx = 2;
+let dy = -2;
+
+
 
 // draw the ball 
 function drawtheBall() {
@@ -23,11 +27,14 @@ function drawtheBall() {
 // Game Loop 
 function paint() {
 
-
+    // clear canves on each paint 
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw the ball
     drawtheBall();
-
+    //    add 2 px 
+    x += dx;
+    y += dy;
 
     // make a call multiple times 
     requestAnimationFrame(paint);
