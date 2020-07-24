@@ -3,6 +3,8 @@ const canvas = document.querySelector("#canv");
 const context = canvas.getContext("2d");
 const scoreUI = document.querySelector("#score");
 const highscore = document.querySelector("#highscore");
+const lost = document.querySelector("#lost");
+
 
 
 // Events 
@@ -40,6 +42,11 @@ let score = 0;
 // update score
 function updateScore() {
     scoreUI.textContent = score;
+}
+
+function lostGame() {
+    alert('Sorry You Lost the Game Try Again !!');
+    // lost.classList.remove('d-none');
 }
 
 function highScore(score) {
@@ -91,7 +98,8 @@ function paint() {
 
     // clear canves on each paint 
     context.clearRect(0, 0, canvas.width, canvas.height);
-
+    // high score
+    highScore(score);
     // draw paddle
     drawthePaddle();
 
@@ -106,11 +114,12 @@ function paint() {
         if (y + dy > canvas.height - paddleHeight - ballRadius && x + dx > paddleX && x + dx < paddleX + paddleWidth) {
             score++;
             updateScore(score);
-            highScore(score);
+
         }
         dy = -dy;
 
     } else if (y + dy > canvas.height) {
+        lostGame();
         drawtheBall();
         location.reload();
     }
