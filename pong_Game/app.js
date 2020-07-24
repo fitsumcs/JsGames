@@ -130,6 +130,7 @@ function paint() {
 
     } else if (y + dy > canvas.height) {
         // lostGame();
+        score = 0;
         drawtheBallReset();
         location.reload();
     }
