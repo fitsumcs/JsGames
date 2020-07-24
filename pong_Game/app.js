@@ -2,17 +2,23 @@
 const canvas = document.querySelector("#canv");
 const context = canvas.getContext("2d");
 const scoreUI = document.querySelector("#score");
+const highscore = document.querySelector("#highscore");
+
 
 // Events 
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('keyup', keyUpHandler);
+document.addEventListener('DOMContentLoaded', () => {
 
+    highscore.textContent = localStorage.getItem('highscore') || 0;
+
+});
 
 // variables 
 // ball Realted to ball 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let ballRadius = 15;
+let ballRadius = 10;
 
 let dx = 2;
 let dy = -2;
@@ -36,10 +42,17 @@ function updateScore() {
     scoreUI.textContent = score;
 }
 
+function highScore(score) {
+    if (Number(localStorage.getItem('highscore')) < score) {
+        localStorage.setItem('highscore', score);
+    }
+
+}
+
 function drawthePaddle() {
     context.beginPath();
     context.rect(paddleX, paddleY, paddleWidth, paddleHeight);
-    context.fillStyle = 'blue';
+    context.fillStyle = 'white';
     context.fill();
     context.closePath();
 
@@ -49,7 +62,7 @@ function drawthePaddle() {
 function drawtheBall() {
     context.beginPath();
     context.arc(x, y, ballRadius, 0, Math.PI * 2);
-    context.fillStyle = 'red';
+    context.fillStyle = 'white';
     context.fill();
     context.closePath();
 }
@@ -93,6 +106,7 @@ function paint() {
         if (y + dy > canvas.height - paddleHeight - ballRadius && x + dx > paddleX && x + dx < paddleX + paddleWidth) {
             score++;
             updateScore(score);
+            highScore(score);
         }
         dy = -dy;
 
