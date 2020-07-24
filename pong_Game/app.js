@@ -1,6 +1,7 @@
 // Element selection 
 const canvas = document.querySelector("#canv");
 const context = canvas.getContext("2d");
+const scoreUI = document.querySelector("#score");
 
 // Events 
 document.addEventListener('keydown', keyDownHandler);
@@ -28,6 +29,12 @@ let paddleDx = 7;
 let rightKeyPressed;
 let leftKeyPressed;
 
+// score
+let score = 0;
+// update score
+function updateScore() {
+    scoreUI.textContent = score;
+}
 
 function drawthePaddle() {
     context.beginPath();
@@ -82,7 +89,13 @@ function paint() {
         dx = -dx;
     }
     if (y + dy < ballRadius || (y + dy > canvas.height - paddleHeight - ballRadius && x + dx > paddleX && x + dx < paddleX + paddleWidth)) {
+        // score 
+        if (y + dy > canvas.height - paddleHeight - ballRadius && x + dx > paddleX && x + dx < paddleX + paddleWidth) {
+            score++;
+            updateScore(score);
+        }
         dy = -dy;
+
     } else if (y + dy > canvas.height) {
         location.reload();
     }
@@ -93,6 +106,8 @@ function paint() {
     if (leftKeyPressed && paddleX > 0) {
         paddleX -= paddleDx;
     }
+
+
     //    add 2 px 
     x += dx;
     y += dy;
