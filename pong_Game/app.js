@@ -83,6 +83,8 @@ function paint() {
     }
     if (y + dy < ballRadius || (y + dy > canvas.height - paddleHeight - ballRadius && x + dx > paddleX && x + dx < paddleX + paddleWidth)) {
         dy = -dy;
+    } else if (y + dy > canvas.height) {
+        location.reload();
     }
     // paddle
     if (rightKeyPressed && (paddleX + paddleWidth) < canvas.width) {
