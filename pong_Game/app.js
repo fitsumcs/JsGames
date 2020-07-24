@@ -111,6 +111,7 @@ function paint() {
         dy = -dy;
 
     } else if (y + dy > canvas.height) {
+        drawtheBall();
         location.reload();
     }
     // paddle
