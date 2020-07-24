@@ -73,6 +73,17 @@ function drawtheBall() {
     context.fill();
     context.closePath();
 }
+// draw the ball 
+function drawtheBallReset() {
+    let x = canvas.width / 2;
+    let y = canvas.height - 30;
+    let ballRadius = 10;
+    context.beginPath();
+    context.arc(x, y, ballRadius, 0, Math.PI * 2);
+    context.fillStyle = 'white';
+    context.fill();
+    context.closePath();
+}
 // Event Handlers 
 function keyDownHandler(e) {
     if (e.keyCode == 39) {
@@ -119,7 +130,7 @@ function paint() {
 
     } else if (y + dy > canvas.height) {
         // lostGame();
-        drawtheBall();
+        drawtheBallReset();
         location.reload();
     }
     // paddle
