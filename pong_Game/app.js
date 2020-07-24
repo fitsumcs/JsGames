@@ -98,11 +98,10 @@ function paint() {
 
     // clear canves on each paint 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    // high score
-    highScore(score);
     // draw paddle
     drawthePaddle();
-
+    // high score
+    highScore(score);
     // draw the ball
     drawtheBall();
     // collision detection 
@@ -119,7 +118,7 @@ function paint() {
         dy = -dy;
 
     } else if (y + dy > canvas.height) {
-        lostGame();
+        // lostGame();
         drawtheBall();
         location.reload();
     }
