@@ -2,21 +2,26 @@
 const gameCanvas = document.querySelector('#gameCanvas');
 const context = gameCanvas.getContext('2d');
 
-// test 
-context.beginPath();
-context.rect(20, 40, 50, 50);
-context.fillStyle = '#ff0000';
-context.fill();
-context.closePath();
+// ball related 
+let x = gameCanvas.width / 2;
+let y = gameCanvas.height - 30;
+const dx = 2;
+const dy = -2;
+// draw the ball 
+function drawBall() {
+    context.beginPath();
+    context.arc(x, y, 10, 0, Math.PI * 2);
+    context.fillStyle = "#0095DD";
+    context.fill();
+    context.closePath();
+    x += dx;
+    y += dy;
+}
+// draw function 
+function paint() {
+    context.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    drawBall();
 
-context.beginPath();
-context.arc(240, 160, 20, 0, Math.PI * 2, false);
-context.fillStyle = "green";
-context.fill();
-context.closePath();
+}
 
-context.beginPath();
-context.rect(160, 10, 100, 40);
-context.strokeStyle = "rgba(0, 0, 255, 0.5)";
-context.stroke();
-context.closePath();
+setInterval(paint, 10); //run every 10miliseconds
