@@ -56,9 +56,9 @@ function mouseMoveHandler(e) {
 }
 
 function collisionDetection() {
-    for (var c = 0; c < brickColumnCount; c++) {
-        for (var r = 0; r < brickRowCount; r++) {
-            var b = bricks[c][r];
+    for (let i = 0; i < brickColumnCount; i++) {
+        for (let j = 0; j < brickRowCount; j++) {
+            let b = bricks[i][j];
             if (b.status == 1) {
                 if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                     dy = -dy;
@@ -91,13 +91,13 @@ function drawPaddle() {
 }
 
 function drawBricks() {
-    for (var c = 0; c < brickColumnCount; c++) {
-        for (var r = 0; r < brickRowCount; r++) {
-            if (bricks[c][r].status == 1) {
-                var brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
-                var brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
-                bricks[c][r].x = brickX;
-                bricks[c][r].y = brickY;
+    for (let i = 0; i < brickColumnCount; i++) {
+        for (let j = 0; j < brickRowCount; j++) {
+            if (bricks[i][j].status == 1) {
+                let brickX = (j * (brickWidth + brickPadding)) + brickOffsetLeft;
+                let brickY = (i * (brickHeight + brickPadding)) + brickOffsetTop;
+                bricks[i][j].x = brickX;
+                bricks[i][j].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
                 ctx.fillStyle = "red";
