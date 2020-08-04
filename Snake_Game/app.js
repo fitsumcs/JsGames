@@ -2,9 +2,26 @@
 const canves = document.querySelector('#gameCanvas');
 
 const ctx = canves.getContext("2d");
-
+const scoreUI = document.querySelector("#score");
+const highscore = document.querySelector("#highscore");
 // event listener 
 document.addEventListener("keydown", keycontrol);
+document.addEventListener('DOMContentLoaded', () => {
+
+    highscore.textContent = localStorage.getItem('snake_highscore') || 0;
+
+});
+
+function highScore(score) {
+    if (Number(localStorage.getItem('snake_highscore')) < score) {
+        localStorage.setItem('snake_highscore', score);
+    }
+
+}
+// update score
+function updateScore() {
+    scoreUI.textContent = score;
+}
 
 let direction;
 // key control
@@ -62,7 +79,8 @@ function paint() {
 
     // draw the bord 
     ctx.drawImage(bord, 0, 0);
-
+    // high score
+    highScore(score);
     // draw the snake 
     for (let index = 0; index < snake.length; index++) {
         ctx.fillStyle = (index == 0) ? "green" : "white";
@@ -95,6 +113,7 @@ function paint() {
     // score update 
     if (snakeX == food.x && snakeY == food.y) {
         score++;
+        updateScore(score);
 
         food = {
             x: Math.floor(Math.random() * 17 + 1) * scale,
@@ -108,6 +127,7 @@ function paint() {
     // game over 
     if (snakeX < scale || snakeX > 17 * scale || snakeY < 3 * scale || snakeY > 17 * scale || collissionDetection(snakeHead, snake)) {
         clearInterval(interval);
+        location.reload();
     }
 
 
