@@ -71,6 +71,40 @@ function paint() {
         ctx.strokeStyle = "red";
         ctx.strokeRect(snake[index].x, snake[index].y, scale, scale);
     }
+
+
+    // Snake move 
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+
+
+    // direction 
+    if (direction == "Left") snakeX -= scale;
+    if (direction == "Up") snakeY -= scale;
+    if (direction == "Right") snakeX += scale;
+    if (direction == "Down") snakeY += scale;
+
+    // add new head 
+    let snakeHead = {
+        x: snakeX,
+        y: snakeY
+    };
+    snake.unshift(snakeHead);
+    // score update 
+    if (snakeX == food.x && snakeY == food.y) {
+        score++;
+
+        food = {
+            x: Math.floor(Math.random() * 17 + 1) * scale,
+            y: Math.floor(Math.random() * 15 + 3) * scale
+
+        };
+    } else {
+        // remove tail
+        snake.pop();
+    }
+
     // draw food
     ctx.drawImage(food_Item, food.x, food.y);
 
@@ -89,4 +123,4 @@ function paint() {
 
 
 
-let interval = setInterval(paint, 1000);
+let interval = setInterval(paint, 1000 / 10);
