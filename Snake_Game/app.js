@@ -3,6 +3,31 @@ const canves = document.querySelector('#gameCanvas');
 
 const ctx = canves.getContext("2d");
 
+// event listener 
+document.addEventListener("keydown", keycontrol);
+
+let direction;
+// key control
+function keycontrol(e) {
+    if (e.keyCode == 37 && direction != "Right") {
+        direction = "Left";
+
+    } else if (e.keyCode == 38 && direction != "Down") {
+        direction = "Up";
+
+    } else if (e.keyCode == 39 && direction != "Left") {
+        direction = "Right";
+
+    } else if (e.keyCode == 40 && direction != "Up") {
+        direction = "Down";
+
+    }
+
+
+
+}
+
+
 // comon vars 
 const scale = 32;
 
@@ -34,7 +59,20 @@ let score = 0;
 
 // draw the things 
 function paint() {
+
+    // draw the bord 
     ctx.drawImage(bord, 0, 0);
+
+    // draw the snake 
+    for (let index = 0; index < snake.length; index++) {
+        ctx.fillStyle = (index == 0) ? "green" : "white";
+        ctx.fillRect(snake[index].x, snake[index].y, scale, scale);
+
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(snake[index].x, snake[index].y, scale, scale);
+    }
+    // draw food
+    ctx.drawImage(food_Item, food.x, food.y);
 
 }
 
