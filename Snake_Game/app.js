@@ -73,6 +73,16 @@ let food = {
 // Score 
 let score = 0;
 
+// collision 
+function collissionDetection(head, snakeG) {
+
+    for (let index = 0; index < snakeG.length; index++) {
+        if (head.x === snakeG[index].x && head.y === snakeG[index].y) {
+            return true;
+        }
+    }
+    return false;
+}
 
 // draw the things 
 function paint() {
@@ -83,7 +93,7 @@ function paint() {
     highScore(score);
     // draw the snake 
     for (let index = 0; index < snake.length; index++) {
-        ctx.fillStyle = (index == 0) ? "green" : "white";
+        ctx.fillStyle = (index == 0) ? "blue" : "yellow";
         ctx.fillRect(snake[index].x, snake[index].y, scale, scale);
 
         ctx.strokeStyle = "red";
@@ -125,7 +135,7 @@ function paint() {
         snake.pop();
     }
     // game over 
-    if (snakeX < scale || snakeX > 17 * scale || snakeY < 3 * scale || snakeY > 17 * scale || collissionDetection(snakeHead, snake)) {
+    if (snakeX < scale || snakeX > 17 * scale || snakeY < 3 * scale || snakeY > 17 * scale) {
         clearInterval(interval);
         location.reload();
     }
