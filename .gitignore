@@ -1,2 +1,5 @@
 #js hint 
 .jshintrc
+
+#vs code 
+.vscode
