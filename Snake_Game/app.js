@@ -72,7 +72,8 @@ function paint() {
         ctx.strokeRect(snake[index].x, snake[index].y, scale, scale);
     }
 
-
+    // draw food
+    ctx.drawImage(food_Item, food.x, food.y);
     // Snake move 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
@@ -104,9 +105,11 @@ function paint() {
         // remove tail
         snake.pop();
     }
+    // game over 
+    if (snakeX < scale || snakeX > 17 * scale || snakeY < 3 * scale || snakeY > 17 * scale || collissionDetection(snakeHead, snake)) {
+        clearInterval(interval);
+    }
 
-    // draw food
-    ctx.drawImage(food_Item, food.x, food.y);
 
 }
 
